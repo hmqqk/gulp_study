@@ -43,9 +43,9 @@ gulp_study
 gulp处理文件分类
 --
 1. [html](#html--source)
-2. [css](#css--source)
-3. [js](#js--source)
-4. [img](#img--source)
+2. [css](#css-source)
+3. [js](#js-source)
+4. [img](#img-source)
 
 主要用到以下插件
 ---
