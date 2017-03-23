@@ -42,10 +42,36 @@ gulp_study
 ```
 gulp处理文件分类
 --
-1. html
+1. [html](#html--source)
 2. css
 3. js
 4. img
+
+主要用到以下插件
+---
+
+
+###### [gulp-uglify](https://www.npmjs.com/package/gulp-gulify)  js文件压缩
+
+###### [gulp-rename](https://www.npmjs.com/package/gulp-rename) 重命名
+
+###### [gulp-minify-css](https://www.npmjs.com/package/gulp-minify-css) css压缩
+
+###### [gulp-less](https://www.npmjs.com/package/gulp-less)  编译less
+
+###### [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)   自动添加浏览器前缀
+
+###### [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin) image 压缩
+
+###### [gulp.spritesmith](https://www.npmjs.com/package/gulp.spritesmith) img 雪碧图
+
+###### [gulp-minify-html](https://www.npmjs.com/package/gulp-minify-html) html 压缩
+
+###### [gulp-concat](https://www.npmjs.com/package/gulp-concat) 文件合并
+
+###### [gulp-babel](https://www.npmjs.com/package/gulp-babel)  将es6编译成es5
+
+###### [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
 
 html  [[source](./src/note/html.js)]
 --
