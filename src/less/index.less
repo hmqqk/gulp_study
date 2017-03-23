@@ -1,0 +1,11 @@
+.mixin(1)                   {x: 11}
+.mixin(2)                   {y: 22}
+.mixin(@x) when (default()) {z: @x}
+
+div {
+  .mixin(3);
+}
+
+div.special {
+  .mixin(1);
+}

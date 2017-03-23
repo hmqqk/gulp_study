@@ -1,0 +1,8 @@
+body  {
+	background: red;
+	font-size: 12px;
+}
+ul,li {
+	margin: 0;
+	padding: 0;
+}
