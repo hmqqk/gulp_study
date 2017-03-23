@@ -43,9 +43,9 @@ gulp_study
 gulp处理文件分类
 --
 1. [html](#html--source)
-2. css
-3. js
-4. img
+2. [css](#css--source)
+3. [js](#js--source)
+4. [img](#img--source)
 
 主要用到以下插件
 ---
@@ -148,4 +148,87 @@ gulp.task('renamecss', function(){
     .pipe(rename('style.min.css'))
     .pipe(gulp.dest('dist/css'))
 });
+```
+js [[source](./src/note/js.js)]
+--
+js主要经行压缩，重命名, 合并文件,   ES6 转换ES5
+
+加载插件
+```
+var gulp = require('gulp');
+var uglify = require('gulp-uglify'); // js文件压缩
+var rename = require('gulp-rename'); // 重命名
+var concat = require('gulp-concat'); // 文件合并
+var babel = require('gulp-babel'); // ES6编译成ES5
+```
+
+> 压缩
+```
+// js文件压缩
+gulp.task('uglify', function(){
+    gulp.src('src/js/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/js'))
+});
+```
+> 合并文件，重命名
+```
+// 重命名
+gulp.task('rename', function(){
+    gulp.src('src/js/hello.js')
+    .pipe(rename('hello.min.js'))
+    .pipe(gulp.dest('dist/js'))
+})
+
+// 文件合并
+gulp.task('concat', function(){
+    gulp.src('src/js/*.js')
+    .pipe(concat('concat.js'))
+    .pipe(uglify()) // 合并之后压缩
+    .pipe(gulp.dest('dist/js'))
+});
+```
+> 将ES6转换为ES5
+```
+// 再使用gulp-babel 之前需安装一下内容
+// npm install gulp-babel babel-preset-2015 --save-dev
+// 将ES6转换成ES5
+gulp.task('es6', function(){
+    gulp.src('src/js/es6.js')
+    .pipe(babel())
+    .pipe(gulp.dest('dist/js'))
+});
+```
+img [[source](./src/note/img.js)]
+--
+关于图片处理主要经行压缩，制作雪碧图
+
+加载插件
+```
+var gulp = require('gulp');
+var imagemin = require('gulp-imagemin'); // image 压缩
+var imgspriter = require('gulp.spritesmith') // img 雪碧图
+```
+> 图片压缩
+```
+// image压缩
+gulp.task('imagemin', function(){
+    gulp.src('src/img/*.{png,jpg,gif,ico}')
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/img'))
+});
+```
+> 雪碧图
+```
+// image 雪碧图
+gulp.task('imgspriter', function(){
+    gulp.src('src/icon/*.png')
+    .pipe(imgspriter({
+        imgName:'sprite.png',  
+        cssName:'css/icon.css',  
+        padding:5,  
+        algorithm:'binary-tree'    
+    }))
+    .pipe(gulp.dest('dist/spriter'))
+})
 ```
