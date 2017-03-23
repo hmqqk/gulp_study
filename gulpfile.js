@@ -7,6 +7,7 @@ var autoprefixer = require('gulp-autoprefixer') // 自动添加浏览器前缀
 var imagemin = require('gulp-imagemin'); // image 压缩
 var imgspriter = require('gulp.spritesmith'); // img 雪碧图
 var minifyHtml = require('gulp-minify-html'); // html 压缩
+var concat = require('gulp-concat'); // 文件合并
 
 
 // js文件压缩
@@ -68,11 +69,18 @@ gulp.task('imgspriter', function(){
 	}))
 	.pipe(gulp.dest('dist/spriter'))
 });
+// 压缩html
 gulp.task('minifyhtml', function(){
 	gulp.src('src/index.html')
 	.pipe(minifyHtml())
 	.pipe(gulp.dest('dist'))
 });
-
+// 文件合并
+gulp.task('concat', function(){
+	gulp.src('src/js/*.js')
+	.pipe(concat('concat.js'))
+	.pipe(uglify()) // 合并之后压缩
+	.pipe(gulp.dest('dist/js'))
+});
 gulp.task('default',['uglify', 'minifyhtml']) // 默认任务，执行gulp
 
