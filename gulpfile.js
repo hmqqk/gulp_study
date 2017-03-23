@@ -1,13 +1,14 @@
-var gulp = require('gulp');
-var uglify = require('gulp-uglify'); // js文件压缩
-var rename = require('gulp-rename'); // 重命名
-var minifyCss = require('gulp-minify-css'); // css压缩
-var less = require('gulp-less'); // 编译less
-var autoprefixer = require('gulp-autoprefixer') // 自动添加浏览器前缀
-var imagemin = require('gulp-imagemin'); // image 压缩
-var imgspriter = require('gulp.spritesmith'); // img 雪碧图
-var minifyHtml = require('gulp-minify-html'); // html 压缩
-var concat = require('gulp-concat'); // 文件合并
+let gulp = require('gulp');
+let uglify = require('gulp-uglify'); // js文件压缩
+let rename = require('gulp-rename'); // 重命名
+let minifyCss = require('gulp-minify-css'); // css压缩
+let less = require('gulp-less'); // 编译less
+let autoprefixer = require('gulp-autoprefixer') // 自动添加浏览器前缀
+let imagemin = require('gulp-imagemin'); // image 压缩
+let imgspriter = require('gulp.spritesmith'); // img 雪碧图
+let minifyHtml = require('gulp-minify-html'); // html 压缩
+let concat = require('gulp-concat'); // 文件合并
+let babel = require('gulp-babel'); // 将es6编译成es5
 
 
 // js文件压缩
@@ -81,6 +82,19 @@ gulp.task('concat', function(){
 	.pipe(concat('concat.js'))
 	.pipe(uglify()) // 合并之后压缩
 	.pipe(gulp.dest('dist/js'))
+});
+// 编译ES6
+gulp.task('es6', function(){
+	gulp.src('src/js/es6.js')
+	.pipe(babel({
+		presets: ['es2015']
+	}))
+	.pipe(gulp.dest('dist/js'))
+});
+
+// 监听文件
+gulp.task('watch',function(){
+	gulp.watch(['src/js/es6.js'], ['es6'])
 });
 gulp.task('default',['uglify', 'minifyhtml']) // 默认任务，执行gulp
 
