@@ -9,6 +9,7 @@ let imgspriter = require('gulp.spritesmith'); // img 雪碧图
 let minifyHtml = require('gulp-minify-html'); // html 压缩
 let concat = require('gulp-concat'); // 文件合并
 let babel = require('gulp-babel'); // 将es6编译成es5
+let sourcemaps = require('gulp-sourcemaps');
 
 
 // js文件压缩
@@ -79,8 +80,14 @@ gulp.task('minifyhtml', function(){
 // 文件合并
 gulp.task('concat', function(){
 	gulp.src('src/js/*.js')
-	.pipe(concat('concat.js'))
-	.pipe(uglify()) // 合并之后压缩
+	.pipe(sourcemaps.init())
+      .pipe(concat('concat.js'))
+    .pipe(sourcemaps.write('..maps',{
+    	 mapSources: function(sourcePath, file) {
+        // source paths are prefixed with '../src/' 
+        return '../src/' + sourcePath;
+      }
+    }))
 	.pipe(gulp.dest('dist/js'))
 });
 // 编译ES6
