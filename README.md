@@ -40,4 +40,22 @@ gulp_study
     |--package.json
     |
 ```
+gulp处理文件分类
+--
+1. html
+2. css
+3. js
+4. img
 
+html  [[source](./src/note/html.js)]
+--
+html 主要还是进行代码压缩处理
+```
+var gulp = require('gulp')
+var minifyHtml = require('gulp-minify-html')  // html压缩
+gulp.task('minifyhtml', function(){
+	gulp.src('src/index.html')
+	.pipe(minifyHtml())
+	.pipe(gulp.dest('dist'))
+});
+```
