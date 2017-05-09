@@ -4,6 +4,10 @@ var rename = require('gulp-rename'); // 重命名
 var concat = require('gulp-concat'); // 文件合并
 var babel = require('gulp-babel'); // ES6编译成ES5
 
+
+
+
+
 // js文件压缩
 gulp.task('uglify', function(){
 	gulp.src('src/js/*.js')
